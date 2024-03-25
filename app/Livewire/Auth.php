@@ -3,10 +3,13 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\Auth as AuthLogin;
 
 class Auth extends Component
 {
+    use LivewireAlert;
+
     public string $email;
     public string $password;
 
@@ -14,6 +17,8 @@ class Auth extends Component
     {
         if (AuthLogin::attempt(['email' => $this->email, 'password' => $this->password])) {
             $this->redirectRoute('contact');
+        } else {
+            $this->alert('error', 'Unauthorized');
         }
     }
 

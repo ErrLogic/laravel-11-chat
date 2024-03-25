@@ -16,13 +16,13 @@ class SendRealtimeMessage implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public string $message;
-    public int $roomId;
-    public int $userId;
+    public string $roomId;
+    public string $userId;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(string $message, int $roomId, int $userId)
+    public function __construct(string $message, string $roomId, string $userId)
     {
         $this->message = $message;
         $this->roomId = $roomId;

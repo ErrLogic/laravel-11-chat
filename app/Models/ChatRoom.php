@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ChatRoom extends Model
 {
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     use HasFactory;
 
     /**
@@ -17,4 +22,12 @@ class ChatRoom extends Model
     protected $fillable = [
         'participant'
     ];
+
+    public static function boot() {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = Str::orderedUuid();
+        });
+    }
 }

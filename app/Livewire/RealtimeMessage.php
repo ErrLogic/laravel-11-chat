@@ -16,7 +16,7 @@ class RealtimeMessage extends Component
 {
     use LivewireAlert;
 
-    public int $roomId;
+    public string $roomId;
     public string $message = '';
     public string $status;
     public string $friendStatus;
@@ -26,14 +26,6 @@ class RealtimeMessage extends Component
     {
         $this->status = 'Offline';
         $this->friendStatus = 'Offline';
-    }
-
-    public function logout()
-    {
-        Auth::logout();
-        Session::flush();
-
-        $this->redirectRoute('login');
     }
 
     public function getListeners()
@@ -95,6 +87,19 @@ class RealtimeMessage extends Component
     {
         $this->friendStatus = 'Offline';
         $this->friendName = $event['name'];
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        Session::flush();
+
+        $this->redirectRoute('login');
+    }
+
+    public function back()
+    {
+        $this->redirectRoute('contact');
     }
 
     public function render()

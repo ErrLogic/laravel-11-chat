@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Chat extends Model
 {
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     use HasFactory;
 
     /**
@@ -20,4 +25,12 @@ class Chat extends Model
         'message',
         'is_read',
     ];
+
+    public static function boot() {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = Str::orderedUuid();
+        });
+    }
 }

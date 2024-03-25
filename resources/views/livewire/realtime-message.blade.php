@@ -25,8 +25,12 @@
                 <button class="mt-3 py-1 px-2 bg-blue-600 rounded-lg border text-white font-semibold"
                     type="submit">Submit</button>
             </form>
-            <button class="mt-3 py-1 px-2 bg-red-600 rounded-lg border text-white font-semibold"
-                wire:click.prevent="logout">Logout</button>
+            <div class="flex gap-2">
+                <button class="mt-3 py-1 px-2 bg-green-600 rounded-lg border text-white font-semibold"
+                    wire:click.prevent="back">Back</button>
+                <button class="mt-3 py-1 px-2 bg-red-600 rounded-lg border text-white font-semibold"
+                    wire:click.prevent="logout">Logout</button>
+            </div>
         </div>
     </div>
 </div>
